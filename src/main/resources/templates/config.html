@@ -17,7 +17,11 @@
         </tr>
         <tr th:each="c: ${config}">
             <td>[[${c.code}]]</td>
-            <td>[[${c.title}]]</td>
+            <td>
+                <a th:href="@{/article/list?(code=${c.code})}" target="_blank">
+                    <strong>[[${c.title}]]</strong>
+                </a>
+            </td>
             <td>[[${c.color}]]</td>
             <td>
                 <a th:href="@{/drop?(code=${c.code})}">삭제</a>

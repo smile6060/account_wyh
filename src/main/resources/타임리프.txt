@@ -8,6 +8,34 @@ ex)
     <input type="text" class="userid" th:value="${mem.userid}"><br>
 
 =========================================
+타임리프 쿼리스트링 주소 2개 값 받을 때
+&를 원래는 사용해야하는데 타임리프에선 &대신 , 사용
 
+ex)
+    <a th:href="@{/article/delete?(code=${config.code}, id=${art.id]})}">삭제</a>
+
+
+----------------------------------------------------------------------------------------------------
+** 원래 이렇게 썼는데 자바스크립트 때문에 없앴음
+
+  <th:block th:if="${art.isEmpty()}">
+            <tr>
+                <td colspan="4">등록된 게시물이 없습니다.</td>
+            </tr>            
+        </th:block>
+        <th:block th:unless="${art.isEmpty()}">
+            <tr th:each="art: ${art}">
+                <td>[[${art.id}]]</td>
+                <td>[[${art.subject}]]</td>
+                <td>[[${art.writer}]]</td>
+                <td>
+                    <a href="">수정</a>
+                    <!-- &를 원래는 사용해야하는데 타임리프에선 &대신 , 사용 -->
+                    <a th:onclick="delCheck()"
+                        th:href="@{/article/delete?(code=${config.code}, id=${art.id})}">삭제
+                    </a>
+                </td>
+            </tr>
+        </th:block>
 
 

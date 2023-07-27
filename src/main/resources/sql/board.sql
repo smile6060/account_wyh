@@ -29,3 +29,5 @@ CREATE TABLE kortb_hrd(
     depth int,
     primary key(id)
 );
+
+SELECT * FROM config WHERE code = #{code};

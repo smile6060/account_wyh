@@ -1,0 +1,12 @@
+ <th:block th:unless="${art.isEmpty()}">
+            <tr th:each="art: ${art}">
+                <!-- [[${a.count}]] -->
+                <td>[[${art.id}]]</td>
+                <td>[[${art.subject}]]</td>
+                <td>[[${art.writer}]]</td>
+                <td>
+                    <a href="">수정</a>
+                    <a href="">삭제</a>
+                </td>
+            </tr>
+        </th:block>

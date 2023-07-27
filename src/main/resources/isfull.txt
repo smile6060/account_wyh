@@ -1,0 +1,6 @@
+============================================
+** Config Mapper 참고
+ifnull(값이 있으면 grp + 1, 없으면 default값 1)
+
+ex)
+   @Select("SELECT ifnull(max(grp) + 1, 1) FROM kortb_${code}")
