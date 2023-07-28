@@ -29,15 +29,21 @@
                 <td>[[${art.subject}]]</td>
                 <td>[[${art.writer}]]</td>
                 <td>
-                    <a href="">수정</a>
-                    <a>
-                        <button th:onclick="delCheck([[${config.code}]], [[${art.id}]])">삭제</button>
-                    </a>
+                    
+                    <button th:onclick="editCheck([[${config.code}]], [[${art.id}]])">수정</button>
+                    <button th:onclick="delCheck([[${config.code}]], [[${art.id}]])">삭제</button>
+                    
                 </td>
             </tr>
         </th:block>
     </table>
     <script>
+        // 수정
+        function editCheck(code, id) {
+            location.href = `/article/edit?code=${code}&id=${id}`;
+        }
+
+        // 삭제
         // java에서는 String code, int id 이렇게 받는데 js에서는 생략
         function delCheck(code, id) {
            if(confirm(`${id}번 게시물을 삭제하시겠습니까?`)) {

@@ -3,10 +3,7 @@ package com.example.account.mappers;
 import com.example.account.dto.ArticleDto;
 import com.example.account.dto.ConfigDto;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -54,4 +51,9 @@ public interface ConfigMapper {
     @Delete("DELETE FROM kortb_${code} WHERE id = #{id}")
     void delArticle(ArticleDto articleDto);
 
+    @Select("SELECT * FROM kortb_${code} WHERE id = #{id}")
+    ArticleDto getEdit(ArticleDto articleDto);
+
+    @Update("UPDATE kortb_${code} SET subject = #{subject}, writer = #{writer}, content = #{content} WHERE id = #{id}")
+    void setEdit(ArticleDto articleDto);
 }

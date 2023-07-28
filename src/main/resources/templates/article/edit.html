@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[[${config.title}]] > 글 수정하기</title>
+</head>
+<body>
+    <!-- code를 받아서 왔기 때문에 수정 페이지에서도 code,id 받아줘야 한다. => hidden으로 -->
+    <h2>[[${config.title}]] > 글 수정하기</h2>
+    <form method="post" action="/article/edit">
+        <label>제목</label>
+        <input th:value="${art.subject}" type="text" name="subject" required><br>
+
+        <label>작성자</label>
+        <input th:value="${art.writer}" type="text" name="writer" required><br>
+
+        <label>내용</label>
+        <textarea name="content" cols="100" rows="10" required>
+            [[${art.content}]]
+        </textarea>
+
+        <input type="hidden" name="code" th:value="${config.code}">
+        <input type="hidden" name="id" th:value="${art.id}">
+        <input type="submit" value="게시물 수정">
+
+    </form>
+</body>
+</html>
