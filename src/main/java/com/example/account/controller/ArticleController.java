@@ -70,4 +70,34 @@ public class ArticleController {
 
         return "redirect:/article/list?code=" + articleDto.getCode();
     }
+
+    @GetMapping("/article/view")
+    public String getView(@ModelAttribute ArticleDto articleDto, Model model) {
+//        제목 들고오는 거
+        model.addAttribute("config", configMapper.getConfigOne(articleDto.getCode()));
+//
+        model.addAttribute("art", configMapper.getEdit(articleDto));
+
+        return "article/view";
+    }
+
+    @GetMapping("/article/reply")
+    public String getReply(@ModelAttribute ArticleDto articleDto, Model model) {
+//        제목 들고오는 거
+        model.addAttribute("config", configMapper.getConfigOne(articleDto.getCode()));
+        model.addAttribute("art", configMapper.getEdit(articleDto));
+
+        return "article/reply";
+    }
+
+    @PostMapping("/article/reply")
+    public String setReply(@ModelAttribute ArticleDto articleDto) {
+//        기존 값(depth)을 들고와서 + 1 해줌 그리고 그 값을 다시 셋팅 (setDepth)
+        articleDto.setDepth(articleDto.getDepth() + 1);
+
+        configMapper.setReply(articleDto);
+
+
+        return "redirect:/article/list?code=" + articleDto.getCode();
+    }
 }
