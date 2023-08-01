@@ -3,13 +3,11 @@ package com.example.account.controller;
 import com.example.account.dto.ArticleDto;
 import com.example.account.dto.BoardDto;
 import com.example.account.mappers.ConfigMapper;
+import com.example.account.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.*;
 
@@ -19,12 +17,24 @@ public class ArticleController {
     @Autowired
     private ConfigMapper configMapper;
 
+    @Autowired
+    private ArticleService articleService;
+
     @GetMapping("/article/list")
-    public String getList(@RequestParam String code, Model model) {
+    public String getList(Model model,
+                          @RequestParam String code,
+                          // value list.html에 선언된 name이름을 들고옴 defaultValue = 초기값을 빈값으로 설정해라는 뜻, 혹시나 잘못 입력 되었을 때를 예방하는 값
+                          @RequestParam(value = "searchType", defaultValue = "") String searchType,
+                          // list.html input name값을 들고 옴 words
+                          @RequestParam(value = "words", defaultValue = "") String words) {
+
+//        System.out.println("searchType: " + searchType);
+//        System.out.println("words: " + words);
 //        config 이거 제목 title 가져오는 거임
         model.addAttribute("config", configMapper.getConfigOne(code));
-//        art 값 들고오는 거
-        model.addAttribute("art", configMapper.getList(code));
+//        art 값 들고오는 거 검색 기능 없을 때 사용하는 코드
+//        model.addAttribute("art", configMapper.getList(code));
+        model.addAttribute("art", articleService.getList(code, searchType, words));
 
         return "article/list";
     }

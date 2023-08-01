@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ConfigMapper {
@@ -38,8 +39,9 @@ public interface ConfigMapper {
     ConfigDto getConfigOne(String code);
 
     // 다중 게시판은 매개변수를 필요로 한다.(String code)
-    @Select("SELECT * FROM kortb_${code} ORDER BY grp DESC, depth ASC")
-    List<ArticleDto> getList(String code);
+//    @Select("SELECT * FROM kortb_${code} ORDER BY grp DESC, depth ASC") <= 검색기능 추가 전 코드
+    @Select("SELECT * FROM kortb_${code} #{searchQuery} ORDER BY grp DESC, depth ASC")
+    List<ArticleDto> getList(Map<String, Object> map);
 
     @Insert("INSERT INTO kortb_${code} VALUES(NULL, #{subject}, #{writer}, #{content}, #{grp}, 1)")
     void setWrite(ArticleDto articleDto);

@@ -14,8 +14,8 @@ ajax는 Controller에
 
 ajax 할 땐
 submit 보다는 button을 사용하기
-type도 버튼
-
+typed을 버튼
+    
 ex)
 <button type="button"></button>
 
