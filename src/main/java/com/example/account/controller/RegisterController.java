@@ -53,6 +53,7 @@ public class RegisterController {
             hs.setAttribute("username", r.getUsername());
             hs.setAttribute("level", r.getLevel());
 
+//            60분동안  60 * 60
             hs.setMaxInactiveInterval(60 * 30);
         }
 

@@ -1,10 +1,7 @@
 package com.example.account.mappers;
 
 import com.example.account.dto.RegisterDto;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,5 +22,6 @@ public interface RegisterMapper {
 
     @Update("UPDATE member SET userid = #{userid}, username = #{username}, password = #{password}, level = #{level} WHERE id = #{id}")
     void setUpdate(RegisterDto registerDto);
+
 
 }

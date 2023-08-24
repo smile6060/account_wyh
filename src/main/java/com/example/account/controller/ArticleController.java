@@ -54,7 +54,7 @@ public class ArticleController {
 //        0에서 1로 바뀜
         articleDto.setGrp(cnt);
 
-        configMapper.setWrite(articleDto); //grp, depth
+        configMapper. setWrite(articleDto); //grp, depth
         return "redirect:/article/list?code=" + articleDto.getCode();
     }
 
